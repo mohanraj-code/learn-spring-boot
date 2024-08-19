@@ -59,12 +59,8 @@ jobs:
       contents: write
     
     env:
-      GRADLE_VERSION: 7.6
+      GRADLE_USER_HOME: cashcard
       
-    defaults:
-      run:
-        working-directory: cashcard  # Set the working directory for all steps
-        
     steps:
     - uses: actions/checkout@v4
     - name: Set up JDK 17
@@ -72,14 +68,6 @@ jobs:
       with:
         java-version: '17'
         distribution: 'temurin'
-
-    - name: Setup Gradle
-      uses: gradle/actions/setup-gradle@af1da67850ed9a4cedd57bfd976089dd991e2582 # v4.0.0
-
-    - name: Set up Gradle without Wrapper
-      uses: gradle/gradle-build-action@v2
-      with:
-        gradle-version: ${{ env.GRADLE_VERSION }}
         
     # Generates and submits a dependency graph, enabling Dependabot Alerts for all project dependencies.
     # See: https://github.com/gradle/actions/blob/main/dependency-submission/README.md
