@@ -57,7 +57,11 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-
+    
+    defaults:
+      run:
+        working-directory: cashcard  # Set the working directory for all steps
+        
     steps:
     - uses: actions/checkout@v4
     - name: Set up JDK 17
@@ -70,13 +74,3 @@ jobs:
     # See: https://github.com/gradle/actions/blob/main/dependency-submission/README.md
     - name: Generate and submit dependency graph
       uses: gradle/actions/dependency-submission@af1da67850ed9a4cedd57bfd976089dd991e2582 # v4.0.0
-
-    - name: Generate Dependency Report with Gradle Wrapper
-      run: ./gradlew dependencies --configuration runtimeClasspath > dependencies.txt
-      working-directory: cashcard
-      
-    - name: Upload Dependency Report
-      uses: actions/upload-artifact@v3
-      with:
-        name: dependency-report
-        path: cashcard/dependencies.txt
