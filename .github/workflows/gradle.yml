@@ -59,7 +59,7 @@ jobs:
       contents: write
     
     env:
-      GRADLE_USER_HOME: cashcard
+      GRADLE_USER_HOME: /home/runner/work/learn-spring-boot/learn-spring-boot/cashcard
       
     steps:
     - uses: actions/checkout@v4
