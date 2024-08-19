@@ -8,7 +8,9 @@ import org.springframework.boot.test.json.JacksonTester;
 import java.io.IOException;
 import static org.assertj.core.api.Assertions.assertThat;
 
+@JsonTest
 class CashCardJsonTest {
+
     @Autowired
     private JacksonTester<CashCard> json;
 
@@ -21,10 +23,11 @@ class CashCardJsonTest {
                 .isEqualTo(99);
         assertThat(json.write(cashCard)).hasJsonPathNumberValue("@.amount");
         assertThat(json.write(cashCard)).extractingJsonPathNumberValue("@.amount")
-             .isEqualTo(123.45);
+                .isEqualTo(123.45);
     }
-   @Test
-   void myFirstTest() {
-      assertThat(42).isEqualTo(42);
-   }
+
+    @Test
+    void myFirstTest() {
+        assertThat(42).isEqualTo(42);
+    }
 }
